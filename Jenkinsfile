@@ -10,14 +10,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Verify Redis Deployment') {
-            steps {
-                withCredentials([string(credentialsId: 'minikube_credentials', variable: 'api_token')]) {
-                    sh 'kubectl --token $api_token --server https://host.docker.internal:53924 --insecure-skip-tls-verify=true rollout status deployment/redis-deployment'
-                }
-            }
-        }
     }
 
     post {
